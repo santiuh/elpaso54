@@ -1,6 +1,6 @@
 <template>
   <button
-    class="font-monse text-white text-xl text-bold bg-mostaza max-w-fit rounded-lg px-6 py-5 flex flex-row items-center gap-1"
+    class="font-monse text-white text-xl text-bold bg-mostaza max-w-fit rounded-lg px-6 py-5 flex flex-row items-center gap-1 hover:brightness-90"
   >
     <svg
       v-if="icono"

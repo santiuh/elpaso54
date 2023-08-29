@@ -1,7 +1,7 @@
 <template>
   <HeaderA
-    class="px-52 pb-36 h-screen"
-    fondo="images/portada2oscura.jpg"
+    class="lg:bg-[url('/images/portada2oscura.jpg')] bg-[url('/images/ventana.jpeg')]"
+    modo="A"
   ></HeaderA>
   <div>
     <div class="font-adobe text-4xl justify-center flex py-8">
@@ -12,11 +12,12 @@
       bla.
     </p>
   </div>
-  <Foto foto="images/jacuzzi.jpeg" pie="JACUZZI"></Foto>
-  <Foto foto="images/pileta_tanques.jpg" pie="PILETA"></Foto>
-  <Foto foto="images/terraza.jpg" pie="TERRAZA"></Foto>
-  <Foto foto="images/garage.jpeg" pie="ESTACIONAMIENTO"></Foto>
-  <Foto foto="images/playroom.jpg" pie="PLAYROOM"></Foto>
+  <Foto modo="A" foto="images/jacuzzi.jpeg" pie="JACUZZI"></Foto>
+  <Foto modo="A" foto="images/pileta_tanques.jpg" pie="PILETA"></Foto>
+  <Foto modo="A" foto="images/terraza.jpg" pie="TERRAZA"></Foto>
+  <Foto modo="A" foto="images/garage.jpeg" pie="ESTACIONAMIENTO"></Foto>
+  <Foto modo="A" foto="images/playroom.jpg" pie="PLAYROOM"></Foto>
+  <Foto modo="A" foto="images/cama_dentro.jpeg" pie="LAVANDERÍA"></Foto>
 
   <Footindex></Footindex>
 </template>
