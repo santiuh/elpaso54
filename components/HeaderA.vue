@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-[#14274A] lg:px-52 bg-cover flex flex-col lg:flex-none"
+    class="bg-[#14274A] lg:px-52 lg:bg-cover bg-repeat-round lg:bg-no-repeat flex flex-col lg:flex-none"
     :class="modo === 'A' ? 'h-screen lg:pb-36' : ''"
   >
     <div class="flex lg:flex-row flex-col-reverse items-center justify-between">
