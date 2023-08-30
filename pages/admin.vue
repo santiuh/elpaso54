@@ -38,20 +38,37 @@ function getReservaTabla(dia, habitacion) {
       reserva.habitacion_id === habitacion
     );
   });
-  console.log(reserva.pasajero);
-  pasajero.value = reserva.pasajero;
-  fechaDesde.value = reserva.desde;
-  fechaHasta.value = reserva.hasta;
-  return reserva || null;
+  inpPasajero.value = reserva ? reserva.pasajero : null;
+  inpDesde.value = reserva ? reserva.desde : null;
+  inpHasta.value = reserva ? reserva.hasta : null;
+  inpNoches.value = reserva ? reserva.noches : null;
+  inpPrecio.value = reserva ? reserva.precio_noche : null;
+  inpSeña.value = reserva ? reserva.seña : null;
+  inpSeñaCuenta.value = reserva ? reserva.seña_cuenta : null;
+  inpCancel.value = reserva ? reserva.pago_cancelado_fecha : null;
+  inpCancelCuenta.value = reserva ? reserva.pago_cancelado_cuenta : null;
 }
 
 const habitaciones = 12;
-const tablames = ref(8);
+const tablames = ref(2);
 const tablaaño = ref(2023);
-const dias = daysInMonth(tablames.value, tablaaño.value);
-const pasajero = ref("");
-const fechaDesde = ref("");
-const fechaHasta = ref("");
+const dias = computed(() => {
+  return daysInMonth(tablames.value, tablaaño.value);
+});
+const diasA = daysInMonth(tablames.value, tablaaño.value);
+
+const inpPasajero = ref("");
+const inpContacto = ref("");
+const inpNota = ref("");
+
+const inpDesde = ref("");
+const inpHasta = ref("");
+const inpNoches = ref("");
+const inpPrecio = ref("");
+const inpSeña = ref("");
+const inpSeñaCuenta = ref("");
+const inpCancel = ref("");
+const inpCancelCuenta = ref("");
 </script>
 
 <template>
@@ -93,8 +110,51 @@ const fechaHasta = ref("");
     </div>
 
     <!-- derecha -->
-    <div>pasajero : {{ pasajero }}</div>
-    <input type="date" name="" id="" v-model="fechaDesde" />
-    <input type="date" name="" id="" v-model="fechaHasta" />
+    <div class="flex flex-col">
+      <div class="flex flex-col">
+        <div>Pasajero</div>
+        <input type="text" v-model="inpPasajero" name="" id="" />
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col">
+          <div>Desde</div>
+          <input type="date" name="" id="" v-model="inpDesde" />
+        </div>
+        <div class="flex flex-col">
+          <div>Hasta</div>
+          <input type="date" name="" id="" v-model="inpHasta" />
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col">
+          <div>Noches</div>
+          <input type="text" name="" id="" v-model="inpNoches" />
+        </div>
+        <div class="flex flex-col">
+          <div>Precio Por Noche</div>
+          <input type="text" name="" id="" v-model="inpPrecio" />
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col">
+          <div>Seña</div>
+          <input type="text" name="" id="" v-model="inpSeña" />
+        </div>
+        <div class="flex flex-col">
+          <div>Seña Cuenta</div>
+          <input type="text" name="" id="" v-model="inpSeñaCuenta" />
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col">
+          <div>Cancelación</div>
+          <input type="date" name="" id="" v-model="inpCancel" />
+        </div>
+        <div class="flex flex-col">
+          <div>Cuenta</div>
+          <input type="text" name="" id="" v-model="inpCancelCuenta" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
