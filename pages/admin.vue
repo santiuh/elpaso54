@@ -12,33 +12,67 @@ function daysInMonth(month, year) {
 
 // PINTAR RESERVA
 function getClass(dia, habitacion) {
-  const fechaDia = new Date(tablaaño.value, tablames.value - 1, dia); // Meses en JavaScript son base 0 (enero = 0, febrero = 1, ...)
+  if (!reservas.value) return "";
+  var fechaDesde = null;
+  var fechaHasta = null;
+  const fechaDia = new Date(Date.UTC(tablaaño.value, tablames.value - 1, dia)); // Meses en JavaScript son base 0 (enero = 0, febrero = 1, ...)
+  const reserva = reservas.value.filter((reserva) => {
+    fechaDesde = new Date(reserva.desde);
+    fechaHasta = new Date(reserva.hasta);
 
-  const reserva = reservas.value.find((reserva) => {
-    const fechaDesde = new Date(reserva.desde);
-    const fechaHasta = new Date(reserva.hasta);
     return (
       fechaDia >= fechaDesde &&
       fechaDia <= fechaHasta &&
       reserva.habitacion_id === habitacion
     );
   });
-
-  return reserva ? "bg-red-400" : habitacion % 2 === 0 ? "bg-gray-200" : "";
+  // if (fechaHasta) {
+  //   console.log(
+  //     habitacion,
+  //     fechaDia,
+  //     fechaHasta,
+  //     fechaDia.getTime === fechaHasta.getTime
+  //   );
+  // }
+  if (reserva.length === 0) {
+    return "";
+  } else if (reserva.length === 1) {
+    if (reserva) {
+      if (fechaDia.getTime() === new Date(reserva[0].desde).getTime()) {
+        console.log("Primer Dia");
+        return "primer-dia";
+      }
+      if (fechaDia.getTime() === new Date(reserva[0].hasta).getTime()) {
+        console.log({ reserva, fechaDia, fechaHasta, dia, habitacion });
+        console.log("Ultimo Dia");
+        return "ultimo-dia";
+      }
+      console.log("completo");
+      return "bg-red-400";
+    }
+    return "";
+  } else {
+    if (reserva.length === 2) {
+      return "dia-compartido";
+    }
+  }
 }
 
 function getReservaTabla(dia, habitacion) {
-  const fechaDia = new Date(tablaaño.value, tablames.value - 1, dia);
+  const fechaDia = new Date(Date.UTC(tablaaño.value, tablames.value - 1, dia));
   const reserva = reservas.value.find((reserva) => {
     const fechaDesde = new Date(reserva.desde);
     const fechaHasta = new Date(reserva.hasta);
     return (
       fechaDia >= fechaDesde &&
       fechaDia <= fechaHasta &&
-      reserva.habitacion_id === habitacion
+      reserva.habitacion_id === habitacion &&
+      inpPasajero.value !== reserva.pasajero
     );
   });
   inpPasajero.value = reserva ? reserva.pasajero : null;
+  inpNota.value = reserva ? reserva.nota : null;
+  inpContacto.value = reserva ? reserva.pasajero_contacto : null;
   inpDesde.value = reserva ? reserva.desde : null;
   inpHasta.value = reserva ? reserva.hasta : null;
   inpNoches.value = reserva ? reserva.noches : null;
@@ -50,7 +84,7 @@ function getReservaTabla(dia, habitacion) {
 }
 
 const habitaciones = 12;
-const tablames = ref(2);
+const tablames = ref(8);
 const tablaaño = ref(2023);
 const dias = computed(() => {
   return daysInMonth(tablames.value, tablaaño.value);
@@ -93,11 +127,16 @@ const inpCancelCuenta = ref("");
         <input v-model="tablaaño" class="border" type="text" name="" id="" />
       </div>
       <div class="border max-w-fit p-2">
-        <div v-for="habitacion in habitaciones" class="my-1">
+        <div
+          v-for="habitacion in habitaciones"
+          :key="`habitacion-${habitacion}`"
+          class="my-1"
+          :class="habitacion % 2 === 0 ? 'bg-gray-200' : ' '"
+        >
           <div style="display: flex">
             <button
               v-for="dia in dias"
-              :key="dia"
+              :key="`${habitacion}-${dia}`"
               class="border border-gray-300 min-w-[2rem] text-center px-1"
               :class="getClass(dia, habitacion)"
               @click="getReservaTabla(dia, habitacion)"
@@ -142,7 +181,10 @@ const inpCancelCuenta = ref("");
         </div>
         <div class="flex flex-col">
           <div>Seña Cuenta</div>
-          <input type="text" name="" id="" v-model="inpSeñaCuenta" />
+          <select name="" id="" v-model="inpSeñaCuenta">
+            <option value="1">AMSI</option>
+            <option value="2">Mercado Pago</option>
+          </select>
         </div>
       </div>
       <div class="flex flex-row">
@@ -152,8 +194,19 @@ const inpCancelCuenta = ref("");
         </div>
         <div class="flex flex-col">
           <div>Cuenta</div>
-          <input type="text" name="" id="" v-model="inpCancelCuenta" />
+          <select name="" id="" v-model="inpCancelCuenta">
+            <option value="1">AMSI</option>
+            <option value="2">Mercado Pago</option>
+          </select>
         </div>
+      </div>
+      <div class="flex flex-col">
+        <div>Nota</div>
+        {{ inpNota }}
+      </div>
+      <div class="flex flex-col">
+        <div>Contacto</div>
+        {{ inpContacto }}
       </div>
     </div>
   </div>

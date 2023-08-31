@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primer-dia {
+  background: rgb(255, 0, 0);
+  background: linear-gradient(
+    318deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.ultimo-dia {
+  background: rgb(255, 0, 0);
+  background: linear-gradient(
+    140deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 0, 0, 1) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.dia-compartido {
+  background: rgb(255, 40, 40);
+  background: linear-gradient(
+    140deg,
+    rgba(255, 40, 40, 1) 40%,
+    rgba(255, 255, 255, 1) 48%,
+    rgba(255, 255, 255, 1) 52%,
+    rgba(255, 0, 0, 1) 60%
+  );
+}
