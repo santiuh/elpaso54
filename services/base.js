@@ -37,3 +37,12 @@ export const deleteReservas = (id) => {
     },
   }).then((res) => res.json());
 };
+
+export const getHabitaciones = () => {
+  return fetch(prefix + "habitaciones", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
+};

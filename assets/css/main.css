@@ -2,51 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-input {
-  border: solid;
-  border-color: lightgray;
-  border-radius: 0.5rem;
+select {
   box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
 }
-
-select {
-  border: solid;
-  border-color: lightgray;
-  border-radius: 0.5rem;
+input {
   box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
 }
 
 .primer-dia {
-  background: rgb(255, 0, 0);
+  background: rgb(248, 113, 113);
   background: linear-gradient(
     318deg,
-    rgba(255, 0, 0, 1) 0%,
-    rgba(255, 0, 0, 1) 40%,
+    rgba(248, 113, 113, 1) 0%,
+    rgba(248, 113, 113, 1) 40%,
     rgba(255, 255, 255, 0) 60%,
     rgba(255, 255, 255, 0) 100%
   );
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .ultimo-dia {
-  background: rgb(255, 0, 0);
+  background: rgb(248, 113, 113);
   background: linear-gradient(
     140deg,
-    rgba(255, 0, 0, 1) 0%,
-    rgba(255, 0, 0, 1) 40%,
+    rgba(248, 113, 113, 1) 0%,
+    rgba(248, 113, 113, 1) 40%,
     rgba(255, 255, 255, 0) 60%,
     rgba(255, 255, 255, 0) 100%
   );
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .dia-compartido {
-  background: rgb(255, 40, 40);
+  background: rgb(248, 113, 113);
   background: linear-gradient(
     140deg,
-    rgba(255, 40, 40, 1) 40%,
+    rgba(248, 113, 113, 1) 40%,
     rgba(255, 255, 255, 1) 48%,
     rgba(255, 255, 255, 1) 52%,
-    rgba(255, 0, 0, 1) 60%
+    rgba(248, 113, 113, 1) 60%
   );
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.fade-in {
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .scale-in-center {
@@ -107,6 +111,23 @@ select {
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
