@@ -1,6 +1,8 @@
 <template>
   <button
     class="font-monse text-white text-xl text-bold bg-mostaza max-w-fit rounded-lg px-6 py-5 flex flex-row items-center gap-1 hover:brightness-90"
+    :disabled="disabled"
+    :class="disabled ? 'hover:brightness-100 opacity-70' : ''"
   >
     <svg
       v-if="icono"
@@ -30,5 +32,5 @@
   </button>
 </template>
 <script setup>
-const props = defineProps(["texto", "icono"]);
+const props = defineProps(["texto", "icono", "disabled"]);
 </script>

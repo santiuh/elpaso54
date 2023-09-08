@@ -3,8 +3,14 @@ import { ref, computed } from "vue";
 import { useReservas } from "@/composables/reservas";
 import { deleteReservas, addReserva, updateReserva } from "@/services/base";
 
-const { useGetReservas, reservas, useGetHabitaciones, habitaciones } =
-  useReservas();
+const {
+  useGetReservas,
+  reservas,
+  useGetHabitaciones,
+  habitaciones,
+  useGetReservasPorNombre,
+  resultados,
+} = useReservas();
 useGetReservas();
 useGetHabitaciones();
 
@@ -86,24 +92,26 @@ const dias = computed(() => {
 });
 const diasA = daysInMonth(tablames.value, tablaaño.value);
 
-const inpPasajero = ref("");
-const inpContacto = ref("");
-const inpNota = ref("");
+const inpPasajero = ref(null);
+const inpContacto = ref(null);
+const inpNota = ref(null);
 
-const inpDesde = ref("");
-const inpHasta = ref("");
-const inpNoches = ref("");
-const inpPrecio = ref("");
-const inpSeña = ref("");
-const inpSeñaCuenta = ref("");
-const inpCancel = ref("");
-const inpCancelCuenta = ref("");
+const inpDesde = ref(null);
+const inpHasta = ref(null);
+const inpNoches = ref(null);
+const inpPrecio = ref(null);
+const inpSeña = ref(null);
+const inpSeñaCuenta = ref(null);
+const inpCancel = ref(null);
+const inpCancelCuenta = ref(null);
 
 // SCRIPT NUEVO 6 DE SEPTIEMBRE
-const inpHabitacion_id = ref("");
-const inpReservaId = ref("");
+const inpHabitacion_id = ref(null);
+const inpReservaId = ref(null);
 
 const hotel_id = ref(1);
+
+const busqueda = ref(null);
 
 const useDeleteReservas = (id) => {
   deleteReservas(id).then((resp) => {
@@ -176,7 +184,7 @@ const useUpdateReserva = () => {
 <template>
   <div class="flex flex-col">
     <!-- ARRIBA -->
-    <div class="flex flex-col lg:flex-row lg:justify-center">
+    <div class="flex flex-col lg:flex-row">
       <!-- izquierda -->
       <div class="flex flex-row">
         <!-- Cabañas y Nombre hotel -->
@@ -433,6 +441,7 @@ const useUpdateReserva = () => {
             texto="Borrar"
             class="bg-red-500 !px-2 !py-1"
             @click="useDeleteReservas(inpReservaId)"
+            :disabled="inpReservaId === null"
           ></Boton>
           <Boton
             texto="Editar"
@@ -448,6 +457,38 @@ const useUpdateReserva = () => {
       </div>
     </div>
     <!-- ABAJO -->
-    <div>hola</div>
+    <div class="flex flex-col border items-center">
+      <div class="flex flex-row p-3 gap-2">
+        <input
+          class="border text-center rounded-md"
+          type="text"
+          v-model="busqueda"
+          placeholder="Buscar por Nombre"
+        />
+        <Boton
+          @click="useGetReservasPorNombre(busqueda)"
+          texto="Buscar"
+          class="!py-1"
+          :disabled="busqueda === (null || '')"
+        ></Boton>
+      </div>
+      <div class="flex gap-3 border p-2 w-full">
+        <div
+          v-for="resultado in resultados"
+          class="border rounded-md max-w-max p-2 shadow-md"
+        >
+          <div class="flex flex-col">
+            <div class="flex flex-row items-baseline gap-2">
+              <div class="text-xl font-bold">{{ resultado.pasajero }}</div>
+              <div class="text-gray-400">
+                {{ resultado.hotel_id === 1 ? "El Paso 43" : "El Paso 54" }}
+              </div>
+            </div>
+
+            <div>{{ resultado.desde }} / {{ resultado.hasta }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

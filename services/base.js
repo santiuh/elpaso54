@@ -46,3 +46,13 @@ export const getHabitaciones = () => {
     },
   }).then((res) => res.json());
 };
+
+export const getReservasPorNombre = (busqueda) => {
+  return fetch(prefix + "reservas/buscarPorNombre", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(busqueda),
+  }).then((res) => res.json());
+};
