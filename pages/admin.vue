@@ -182,9 +182,10 @@ const useUpdateReserva = () => {
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <!-- ARRIBA -->
-    <div class="flex flex-col lg:flex-row">
+  <div class="w-screen border shadow-xl">HOTEL</div>
+  <div class="flex flex-col items-center">
+    <!-- TABLA -->
+    <div class="flex flex-col lg:flex-row my-10 shadow-xl">
       <!-- izquierda -->
       <div class="flex flex-row">
         <!-- Cabañas y Nombre hotel -->
@@ -289,21 +290,20 @@ const useUpdateReserva = () => {
       </div>
 
       <!-- derecha -->
-      <div class="flex flex-col border p-2">
-        <div class="flex flex-row">
-          <div class="flex flex-col w-3/4">
-            <div>Pasajero</div>
-            <input
+    </div>
+    <!-- INPUTS -->
+    <div class="border p-2 w-full items-center">
+      <div class="text-center font-monse text-xl underline">RESERVA</div>
+      <div class="flex flex-col w-full max-w-5xl mx-auto">
+        <div class="grid grid-cols-4 gap-6">
+          <div class="flex flex-col">
+            <div>Habitacion</div>
+            <select
               class="border rounded-md"
-              type="text"
-              v-model="inpPasajero"
               name=""
               id=""
-            />
-          </div>
-          <div class="flex flex-col w-1/4">
-            <div>Habitacion</div>
-            <select name="" id="" v-model="inpHabitacion_id">
+              v-model="inpHabitacion_id"
+            >
               <option
                 :value="habitacion.id"
                 v-for="habitacion in habitaciones"
@@ -313,41 +313,18 @@ const useUpdateReserva = () => {
               </option>
             </select>
           </div>
-        </div>
-        <div class="flex flex-row gap-2">
-          <div class="flex flex-col w-1/2">
-            <div>Desde</div>
-            <input
-              class="border rounded-md"
-              type="date"
-              name=""
-              id=""
-              v-model="inpDesde"
-            />
-          </div>
-          <div class="flex flex-col w-1/2">
-            <div>Hasta</div>
-            <input
-              class="border rounded-md"
-              type="date"
-              name=""
-              id=""
-              v-model="inpHasta"
-            />
-          </div>
-        </div>
-        <div class="flex flex-row gap-1">
-          <div class="flex flex-col w-1/4">
-            <div>Noches</div>
+          <div class="flex flex-col">
+            <div>Pasajero</div>
             <input
               class="border rounded-md"
               type="text"
+              v-model="inpPasajero"
               name=""
               id=""
-              v-model="inpNoches"
             />
           </div>
-          <div class="flex flex-col w-1/4">
+
+          <div class="flex flex-col">
             <div>Personas</div>
             <input
               class="border rounded-md"
@@ -357,7 +334,49 @@ const useUpdateReserva = () => {
               v-model="inpPrecio"
             />
           </div>
-          <div class="flex flex-col w-2/4">
+          <div class="flex flex-col">
+            <div>Contacto</div>
+            <input
+              class="border rounded-md"
+              type="text"
+              name=""
+              id=""
+              v-model="inpContacto"
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-6">
+          <div class="flex flex-col">
+            <div>Desde</div>
+            <input
+              class="border rounded-md"
+              type="date"
+              name=""
+              id=""
+              v-model="inpDesde"
+            />
+          </div>
+          <div class="flex flex-col">
+            <div>Hasta</div>
+            <input
+              class="border rounded-md"
+              type="date"
+              name=""
+              id=""
+              v-model="inpHasta"
+            />
+          </div>
+          <div class="flex flex-col w-min">
+            <div>Noches</div>
+            <input
+              class="border rounded-md w-full"
+              type="text"
+              name=""
+              id=""
+              v-model="inpNoches"
+            />
+          </div>
+          <div class="flex flex-col">
             <div>Precio Por Noche</div>
             <input
               class="border rounded-md"
@@ -368,8 +387,8 @@ const useUpdateReserva = () => {
             />
           </div>
         </div>
-        <div class="flex flex-row gap-2">
-          <div class="flex flex-col w-1/2">
+        <div class="grid grid-cols-4 gap-6">
+          <div class="flex flex-col">
             <div>Seña</div>
             <input
               class="border rounded-md"
@@ -379,8 +398,8 @@ const useUpdateReserva = () => {
               v-model="inpSeña"
             />
           </div>
-          <div class="flex flex-col w-1/2">
-            <div>Seña Cuenta</div>
+          <div class="flex flex-col">
+            <div>Cuenta de Seña</div>
             <select
               class="border rounded-md"
               name=""
@@ -391,10 +410,8 @@ const useUpdateReserva = () => {
               <option value="2">Mercado Pago</option>
             </select>
           </div>
-        </div>
-        <div class="flex flex-row gap-2">
-          <div class="flex flex-col w-1/2">
-            <div>Fecha Cancelación</div>
+          <div class="flex flex-col">
+            <div>Fecha de Cancelación</div>
             <input
               class="border rounded-md"
               type="date"
@@ -403,8 +420,8 @@ const useUpdateReserva = () => {
               v-model="inpCancel"
             />
           </div>
-          <div class="flex flex-col w-1/2">
-            <div>Cuenta</div>
+          <div class="flex flex-col">
+            <div>Cuenta de Cancelación</div>
             <select
               class="border rounded-md"
               name=""
@@ -416,30 +433,23 @@ const useUpdateReserva = () => {
             </select>
           </div>
         </div>
-        <div class="flex flex-col">
-          <div>Nota</div>
-          <input
-            class="border rounded-md"
-            type="text"
-            name=""
-            v-model="inpNota"
-            id=""
-          />
+        <div class="flex flex-row">
+          <div class="flex flex-col grow">
+            <div>Nota</div>
+            <input
+              class="border rounded-md"
+              type="text"
+              name=""
+              v-model="inpNota"
+              id=""
+            />
+          </div>
         </div>
-        <div class="flex flex-col">
-          <div>Contacto</div>
-          <input
-            class="border rounded-md"
-            type="text"
-            name=""
-            id=""
-            v-model="inpContacto"
-          />
-        </div>
-        <div class="flex flex-row justify-center p-2 gap-2">
+
+        <div class="flex flex-row justify-center p-2 gap-3">
           <Boton
             texto="Borrar"
-            class="bg-red-500 !px-2 !py-1"
+            class="bg-red-500 !py-1"
             @click="useDeleteReservas(inpReservaId)"
             :disabled="inpReservaId === null"
           ></Boton>
@@ -456,8 +466,8 @@ const useUpdateReserva = () => {
         </div>
       </div>
     </div>
-    <!-- ABAJO -->
-    <div class="flex flex-col border items-center">
+    <!-- SEARCH -->
+    <div class="flex flex-col border items-center w-full">
       <div class="flex flex-row p-3 gap-2">
         <input
           class="border text-center rounded-md"
@@ -472,7 +482,7 @@ const useUpdateReserva = () => {
           :disabled="busqueda === (null || '')"
         ></Boton>
       </div>
-      <div class="flex gap-3 border p-2 w-full">
+      <div class="flex flex-wrap gap-3 border p-2 w-full">
         <div
           v-for="resultado in resultados"
           class="border rounded-md max-w-max p-2 shadow-md"
