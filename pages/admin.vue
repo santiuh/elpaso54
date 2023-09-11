@@ -82,6 +82,7 @@ function getReservaTabla(dia, habitacion) {
   // CODIGO NUEVO
   inpReservaId.value = reserva ? reserva.id : null;
   inpHabitacion_id.value = reserva ? reserva.habitacion_id : null;
+  inpPersonas.value = reserva ? reserva.personas : null;
 }
 
 const habitacioness = 12;
@@ -108,6 +109,7 @@ const inpCancelCuenta = ref(null);
 // SCRIPT NUEVO 6 DE SEPTIEMBRE
 const inpHabitacion_id = ref(null);
 const inpReservaId = ref(null);
+const inpPersonas = ref(null);
 
 const hotel_id = ref(1);
 
@@ -141,7 +143,7 @@ const toastClass = ref("");
 
 const useAddReserva = () => {
   var reserva = {
-    hotel_id: 1,
+    hotel_id: hotel_id.value,
     habitacion_id: inpHabitacion_id.value,
     desde: inpDesde.value,
     hasta: inpHasta.value,
@@ -182,321 +184,394 @@ const useUpdateReserva = () => {
 </script>
 
 <template>
-  <div class="w-screen border shadow-xl">HOTEL</div>
-  <div class="flex flex-col items-center">
-    <!-- TABLA -->
-    <div class="flex flex-col lg:flex-row my-10 shadow-xl">
-      <!-- izquierda -->
-      <div class="flex flex-row">
-        <!-- Cabañas y Nombre hotel -->
-        <div class="flex flex-col border">
-          <!-- <div class="p-2 text-center text-xl min-w-max">El Paso 43</div> -->
-          <select
-            name=""
-            id=""
-            class="py-2 text-xl min-w-max"
-            v-model="hotel_id"
-          >
-            <option :value="1">El Paso 43</option>
-            <option :value="2">El Paso 54</option>
-          </select>
-          <div class="p-2">
-            <div v-for="habitacion in habitaciones">
+  <div class="dark:bg-black dark:text-gray-600">
+    <HeaderAdm></HeaderAdm>
+    <div class="flex flex-col items-center">
+      <!-- TABLA -->
+      <div class="flex flex-col lg:flex-row my-10 shadow-xl">
+        <!-- izquierda -->
+        <div class="flex flex-row">
+          <!-- Cabañas y Nombre hotel -->
+          <div class="flex flex-col border">
+            <!-- <div class="p-2 text-center text-xl min-w-max">El Paso 43</div> -->
+            <select
+              name=""
+              id=""
+              class="py-3 text-xl min-w-max"
+              v-model="hotel_id"
+            >
+              <option :value="1">El Paso 43</option>
+              <option :value="2">El Paso 54</option>
+            </select>
+            <div class="p-2">
+              <div v-for="habitacion in habitaciones">
+                <div
+                  class="border border-gray-3 00 text-center my-1"
+                  :class="habitacion.Habitación % 2 === 0 ? 'bg-gray-200' : ''"
+                  v-if="habitacion.hotel_id === hotel_id"
+                >
+                  Cabaña {{ habitacion.Habitación }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Izquierda - Select y Fechas -->
+          <div class="flex flex-col">
+            <div class="flex flex-row p-2 border justify-between">
+              <!-- Select -->
+              <div class="flex flex-row">
+                <div class="flex flex-row gap-1">
+                  <input
+                    v-model="tablaaño"
+                    class="border rounded-md w-14 text-center"
+                    type="text"
+                    name=""
+                    id=""
+                  />
+                  <select
+                    class="border rounded-md text-center"
+                    v-model="tablames"
+                    name=""
+                    id=""
+                  >
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex flex-row gap-1">
+                <Boton
+                  @click="
+                    tablames !== 1 ? tablames-- : (tablames = 12) && tablaaño--
+                  "
+                  texto="<"
+                  class="!py-0 px-1 font-bold"
+                ></Boton>
+                <Boton
+                  @click="
+                    tablames !== 12 ? tablames++ : (tablames = 1) && tablaaño++
+                  "
+                  texto=">"
+                  class="!py-0 px-1 font-bold"
+                ></Boton>
+              </div>
+            </div>
+            <div class="border max-w-fit p-2">
               <div
-                class="border border-gray-3 00 text-center my-1"
-                :class="habitacion.Habitación % 2 === 0 ? 'bg-gray-200' : ''"
-                v-if="habitacion.hotel_id === hotel_id"
+                v-for="habitacion in habitaciones"
+                :key="`habitacion-${habitacion}`"
+                class="my-1"
+                :class="habitacion.Habitación % 2 === 0 ? 'bg-gray-200' : ' '"
               >
-                Cabaña {{ habitacion.Habitación }}
+                <div
+                  style="display: flex"
+                  v-if="habitacion.hotel_id === hotel_id"
+                >
+                  <button
+                    v-for="dia in dias"
+                    :key="`${habitacion}-${dia}`"
+                    class="border border-gray-300 min-w-[2rem] text-center px-1"
+                    :class="getClass(dia, habitacion.id)"
+                    @click="getReservaTabla(dia, habitacion.id)"
+                  >
+                    {{ dia }}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Izquierda - Select y Fechas -->
-        <div class="flex flex-col">
-          <div class="flex flex-row p-2 border justify-between">
-            <!-- Select -->
-            <div class="flex flex-row">
-              <div class="flex flex-row gap-1">
-                <input
-                  v-model="tablaaño"
-                  class="border rounded-md w-14 text-center"
-                  type="text"
-                  name=""
-                  id=""
-                />
+
+        <!-- derecha -->
+      </div>
+      <!-- INPUTS -->
+      <div class="border w-full items-center shadow2">
+        <div class="text-center font-monse text-xl py-6">RESERVA</div>
+        <div class="flex flex-col w-full max-w-5xl mx-auto gap-3">
+          <div class="grid grid-cols-4 gap-6">
+            <div class="flex flex-row gap-3">
+              <div class="flex flex-col w-1/2">
+                <div>Habitacion</div>
                 <select
-                  class="border rounded-md text-center"
-                  v-model="tablames"
+                  class="border rounded-md"
                   name=""
                   id=""
+                  v-model="inpHabitacion_id"
                 >
-                  <option value="1">Enero</option>
-                  <option value="2">Febrero</option>
-                  <option value="3">Marzo</option>
-                  <option value="4">Abril</option>
-                  <option value="5">Mayo</option>
-                  <option value="6">Junio</option>
-                  <option value="7">Julio</option>
-                  <option value="8">Agosto</option>
-                  <option value="9">Septiembre</option>
-                  <option value="10">Octubre</option>
-                  <option value="11">Noviembre</option>
-                  <option value="12">Diciembre</option>
+                  <option
+                    :value="habitacion.id"
+                    v-for="habitacion in habitaciones"
+                    v-show="habitacion.hotel_id === hotel_id"
+                  >
+                    {{ habitacion.Habitación }}
+                  </option>
+                </select>
+              </div>
+              <div class="flex flex-col w-1/2">
+                <div>Hotel</div>
+                <select
+                  class="border rounded-md"
+                  name=""
+                  id=""
+                  v-model="hotel_id"
+                >
+                  <option :value="1">El Paso 43</option>
+                  <option :value="2">El Paso 54</option>
                 </select>
               </div>
             </div>
-            <div class="flex flex-row gap-1">
-              <Boton
-                @click="
-                  tablames !== 1 ? tablames-- : (tablames = 12) && tablaaño--
-                "
-                texto="<"
-                class="!py-0 px-1 font-bold"
-              ></Boton>
-              <Boton
-                @click="
-                  tablames !== 12 ? tablames++ : (tablames = 1) && tablaaño++
-                "
-                texto=">"
-                class="!py-0 px-1 font-bold"
-              ></Boton>
+            <div class="flex flex-row gap-2">
+              <div class="flex flex-col w-4/5">
+                <div>Pasajero</div>
+                <input
+                  class="border rounded-md"
+                  type="text"
+                  v-model="inpPasajero"
+                  name=""
+                  id=""
+                />
+              </div>
+
+              <div class="flex flex-col w-1/5">
+                <div>Nº Pj.</div>
+                <input
+                  class="border rounded-md"
+                  type="text"
+                  name=""
+                  id=""
+                  v-model="inpPrecio"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-col">
+              <div>Contacto</div>
+              <input
+                class="border rounded-md"
+                type="text"
+                name=""
+                id=""
+                v-model="inpContacto"
+              />
+            </div>
+            <div class="flex flex-row gap-2">
+              <div class="flex flex-col w-1/2">
+                <div>Desde</div>
+                <input
+                  class="border rounded-md"
+                  type="date"
+                  name=""
+                  id=""
+                  v-model="inpDesde"
+                />
+              </div>
+              <div class="flex flex-col w-1/2">
+                <div>Hasta</div>
+                <input
+                  class="border rounded-md"
+                  type="date"
+                  name=""
+                  id=""
+                  v-model="inpHasta"
+                />
+              </div>
             </div>
           </div>
-          <div class="border max-w-fit p-2">
-            <div
-              v-for="habitacion in habitaciones"
-              :key="`habitacion-${habitacion}`"
-              class="my-1"
-              :class="habitacion.Habitación % 2 === 0 ? 'bg-gray-200' : ' '"
-            >
-              <div
-                style="display: flex"
-                v-if="habitacion.hotel_id === hotel_id"
-              >
-                <button
-                  v-for="dia in dias"
-                  :key="`${habitacion}-${dia}`"
-                  class="border border-gray-300 min-w-[2rem] text-center px-1"
-                  :class="getClass(dia, habitacion.id)"
-                  @click="getReservaTabla(dia, habitacion.id)"
+          <div class="grid grid-cols-4 gap-6">
+            <div class="flex flex-row gap-2">
+              <div class="flex flex-col w-min">
+                <div>Noches</div>
+                <input
+                  class="border rounded-md w-full"
+                  type="text"
+                  name=""
+                  id=""
+                  v-model="inpNoches"
+                />
+              </div>
+              <div>
+                <div>Precio Por Noche</div>
+                <input
+                  class="border rounded-md"
+                  type="text"
+                  name=""
+                  id=""
+                  v-model="inpPrecio"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-row gap-2">
+              <div class="flex flex-col w-2/4">
+                <div>Seña</div>
+                <input
+                  class="border rounded-md"
+                  type="text"
+                  name=""
+                  id=""
+                  v-model="inpSeña"
+                />
+              </div>
+              <div class="flex flex-col w-2/4">
+                <div>Cuenta</div>
+                <select
+                  class="border rounded-md"
+                  name=""
+                  id=""
+                  v-model="inpSeñaCuenta"
                 >
-                  {{ dia }}
-                </button>
+                  <option value="1">AMSI</option>
+                  <option value="2">Mercado Pago</option>
+                </select>
               </div>
+            </div>
+            <div class="flex flex-col">
+              <div>Debe</div>
+              <input
+                class="border rounded-md w-full"
+                type="text"
+                name=""
+                id=""
+                v-model="inpNoches"
+              />
+            </div>
+
+            <div class="flex flex-row gap-2">
+              <div class="flex flex-col w-1/2">
+                <div>Cancelación</div>
+                <input
+                  class="border rounded-md"
+                  type="date"
+                  name=""
+                  id=""
+                  v-model="inpCancel"
+                />
+              </div>
+              <div class="flex flex-col w-1/2">
+                <div>Cuenta</div>
+                <select
+                  class="border rounded-md"
+                  name=""
+                  id=""
+                  v-model="inpCancelCuenta"
+                >
+                  <option value="1">AMSI</option>
+                  <option value="2">Mercado Pago</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-row">
+            <div class="flex flex-col grow">
+              <div>Nota</div>
+              <input
+                class="border rounded-md"
+                type="text"
+                name=""
+                v-model="inpNota"
+                id=""
+              />
+            </div>
+          </div>
+          <div
+            class="text-center text-red-500"
+            v-if="inpDesde >= inpHasta && inpDesde !== null"
+          >
+            La fecha de ingreso debe ser anterior a la salida.
+          </div>
+          <div>
+            <div class="flex flex-row justify-center py-7 gap-3">
+              <Boton
+                texto="Borrar"
+                class="bg-red-500 !py-1"
+                @click="useDeleteReservas(inpReservaId)"
+                :disabled="inpReservaId === null"
+              ></Boton>
+              <Boton
+                texto="Editar"
+                class="!bg-blue-400 !py-1"
+                @click="useUpdateReserva()"
+                :disabled="
+                  inpReservaId === null ||
+                  (inpDesde >= inpHasta && inpDesde !== null)
+                "
+              ></Boton>
+              <Boton
+                texto="Agregar"
+                class="!bg-green-600 !px-4 !py-1"
+                @click="useAddReserva()"
+                :disabled="
+                  inpHabitacion_id === null ||
+                  inpPasajero === null ||
+                  inpDesde === null ||
+                  inpHasta === null
+                "
+              ></Boton>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- derecha -->
-    </div>
-    <!-- INPUTS -->
-    <div class="border p-2 w-full items-center">
-      <div class="text-center font-monse text-xl underline">RESERVA</div>
-      <div class="flex flex-col w-full max-w-5xl mx-auto">
-        <div class="grid grid-cols-4 gap-6">
-          <div class="flex flex-col">
-            <div>Habitacion</div>
-            <select
-              class="border rounded-md"
-              name=""
-              id=""
-              v-model="inpHabitacion_id"
-            >
-              <option
-                :value="habitacion.id"
-                v-for="habitacion in habitaciones"
-                v-show="habitacion.hotel_id === hotel_id"
-              >
-                {{ habitacion.Habitación }}
-              </option>
-            </select>
-          </div>
-          <div class="flex flex-col">
-            <div>Pasajero</div>
-            <input
-              class="border rounded-md"
-              type="text"
-              v-model="inpPasajero"
-              name=""
-              id=""
-            />
-          </div>
-
-          <div class="flex flex-col">
-            <div>Personas</div>
-            <input
-              class="border rounded-md"
-              type="text"
-              name=""
-              id=""
-              v-model="inpPrecio"
-            />
-          </div>
-          <div class="flex flex-col">
-            <div>Contacto</div>
-            <input
-              class="border rounded-md"
-              type="text"
-              name=""
-              id=""
-              v-model="inpContacto"
-            />
-          </div>
-        </div>
-        <div class="grid grid-cols-4 gap-6">
-          <div class="flex flex-col">
-            <div>Desde</div>
-            <input
-              class="border rounded-md"
-              type="date"
-              name=""
-              id=""
-              v-model="inpDesde"
-            />
-          </div>
-          <div class="flex flex-col">
-            <div>Hasta</div>
-            <input
-              class="border rounded-md"
-              type="date"
-              name=""
-              id=""
-              v-model="inpHasta"
-            />
-          </div>
-          <div class="flex flex-col w-min">
-            <div>Noches</div>
-            <input
-              class="border rounded-md w-full"
-              type="text"
-              name=""
-              id=""
-              v-model="inpNoches"
-            />
-          </div>
-          <div class="flex flex-col">
-            <div>Precio Por Noche</div>
-            <input
-              class="border rounded-md"
-              type="text"
-              name=""
-              id=""
-              v-model="inpPrecio"
-            />
-          </div>
-        </div>
-        <div class="grid grid-cols-4 gap-6">
-          <div class="flex flex-col">
-            <div>Seña</div>
-            <input
-              class="border rounded-md"
-              type="text"
-              name=""
-              id=""
-              v-model="inpSeña"
-            />
-          </div>
-          <div class="flex flex-col">
-            <div>Cuenta de Seña</div>
-            <select
-              class="border rounded-md"
-              name=""
-              id=""
-              v-model="inpSeñaCuenta"
-            >
-              <option value="1">AMSI</option>
-              <option value="2">Mercado Pago</option>
-            </select>
-          </div>
-          <div class="flex flex-col">
-            <div>Fecha de Cancelación</div>
-            <input
-              class="border rounded-md"
-              type="date"
-              name=""
-              id=""
-              v-model="inpCancel"
-            />
-          </div>
-          <div class="flex flex-col">
-            <div>Cuenta de Cancelación</div>
-            <select
-              class="border rounded-md"
-              name=""
-              id=""
-              v-model="inpCancelCuenta"
-            >
-              <option value="1">AMSI</option>
-              <option value="2">Mercado Pago</option>
-            </select>
-          </div>
-        </div>
-        <div class="flex flex-row">
-          <div class="flex flex-col grow">
-            <div>Nota</div>
-            <input
-              class="border rounded-md"
-              type="text"
-              name=""
-              v-model="inpNota"
-              id=""
-            />
-          </div>
-        </div>
-
-        <div class="flex flex-row justify-center p-2 gap-3">
-          <Boton
-            texto="Borrar"
-            class="bg-red-500 !py-1"
-            @click="useDeleteReservas(inpReservaId)"
-            :disabled="inpReservaId === null"
-          ></Boton>
-          <Boton
-            texto="Editar"
-            class="!bg-blue-400 !px-2 !py-1"
-            @click="useUpdateReserva()"
-          ></Boton>
-          <Boton
-            texto="Agregar"
-            class="!bg-green-600 !px-2 !py-1"
-            @click="useAddReserva()"
-          ></Boton>
-        </div>
-      </div>
-    </div>
-    <!-- SEARCH -->
-    <div class="flex flex-col border items-center w-full">
-      <div class="flex flex-row p-3 gap-2">
-        <input
-          class="border text-center rounded-md"
-          type="text"
-          v-model="busqueda"
-          placeholder="Buscar por Nombre"
-        />
-        <Boton
-          @click="useGetReservasPorNombre(busqueda)"
-          texto="Buscar"
-          class="!py-1"
-          :disabled="busqueda === (null || '')"
-        ></Boton>
-      </div>
-      <div class="flex flex-wrap gap-3 border p-2 w-full">
+      <!-- SEARCH -->
+      <div class="flex flex-col items-center w-full h-min">
         <div
-          v-for="resultado in resultados"
-          class="border rounded-md max-w-max p-2 shadow-md"
+          class="flex flex-row p-5 gap-3 border w-full justify-center shadow"
         >
-          <div class="flex flex-col">
-            <div class="flex flex-row items-baseline gap-2">
-              <div class="text-xl font-bold">{{ resultado.pasajero }}</div>
-              <div class="text-gray-400">
-                {{ resultado.hotel_id === 1 ? "El Paso 43" : "El Paso 54" }}
+          <input
+            class="border text-center rounded-md"
+            type="text"
+            v-model="busqueda"
+            placeholder="Buscar por Nombre"
+          />
+          <Boton
+            @click="useGetReservasPorNombre(busqueda)"
+            texto="Buscar"
+            class="!py-1"
+            :disabled="busqueda === null || busqueda === ''"
+          ></Boton>
+        </div>
+        <div class="flex flex-wrap gap-3 p-5 w-full">
+          <button
+            v-for="resultado in resultados"
+            class="border rounded-md max-w-max p-2 shadow-md hover:bg-gray-100"
+            @click="
+              inpPasajero = resultado.pasajero;
+              inpHabitacion_id = resultado.habitacion_id;
+              inpPersonas = resultado.personas;
+              inpContacto = resultado.pasajero_contacto;
+              inpDesde = resultado.desde;
+              inpHasta = resultado.hasta;
+              inpNoches = resultado.noches;
+              inpPrecio = resultado.precio_noche;
+              inpSeña = resultado.seña;
+              inpSeñaCuenta = resultado.seña_cuenta;
+              inpCancel = resultado.pago_cancelado_fecha;
+              inpCancelCuenta = resultado.pago_cancelado_cuenta;
+              inpNota = resultado.nota;
+            "
+          >
+            <div class="flex flex-col">
+              <div class="flex flex-row items-baseline gap-2">
+                <div class="text-xl font-bold">{{ resultado.pasajero }}</div>
+                <div class="text-gray-400">
+                  {{ resultado.hotel_id === 1 ? "El Paso 43" : "El Paso 54" }}
+                </div>
+              </div>
+
+              <div class="text-start">
+                {{ resultado.desde }} / {{ resultado.hasta }}
               </div>
             </div>
-
-            <div>{{ resultado.desde }} / {{ resultado.hasta }}</div>
-          </div>
+          </button>
         </div>
       </div>
     </div>

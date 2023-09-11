@@ -2,7 +2,7 @@
   <button
     class="font-monse text-white text-xl text-bold bg-mostaza max-w-fit rounded-lg px-6 py-5 flex flex-row items-center gap-1 hover:brightness-90"
     :disabled="disabled"
-    :class="disabled ? 'hover:brightness-100 opacity-70' : ''"
+    :class="disabled ? '!bg-gray-300 hover:!brightness-100 ' : ''"
   >
     <svg
       v-if="icono"

@@ -15,6 +15,7 @@
     imagen="images/DormitorioIndex.jpeg"
   ></Cardindex>
   <Cardindex
+    class="lg:!flex-row-reverse"
     titulocard="Titulo de ejemplo."
     textocard="En lo más alto de nuestras instalaciones, te espera una experiencia única: nuestra piscina en la terraza. Imagina relajarte y refrescarte en un oasis suspendido sobre el horizonte marino."
     imagen="images/pileta_salto.jpeg"
