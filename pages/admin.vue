@@ -11,8 +11,11 @@ const {
   useGetReservasPorNombre,
   resultados,
 } = useReservas();
-useGetReservas();
-useGetHabitaciones();
+
+onBeforeMount(() => {
+  useGetReservas();
+  useGetHabitaciones();
+});
 
 // CALCULAR DIAS EN EL MES
 function daysInMonth(month, year) {

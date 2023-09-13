@@ -3,6 +3,8 @@ import {
   getReservas,
   getHabitaciones,
   getReservasPorNombre,
+  logIn,
+  logOut,
 } from "@/services/base";
 
 const reservas = ref([]);
@@ -24,6 +26,25 @@ export const useReservas = () => {
       (data) => (resultados.value = data.resultados)
     );
   };
+  const useLogin = (log) => {
+    logIn(log).then((res) => {
+      if (res.status === 200) {
+        res.json().then((data) => {
+          localStorage.setItem("token", data.accessToken);
+          localStorage.setItem("nombre", data.user.name);
+        });
+      }
+    });
+  };
+
+  const useLogOut = (log) => {
+    logOut(log).then((res) => {
+      if (res.status === 200) {
+        localStorage.clear();
+      }
+    });
+  };
+
   return {
     useGetReservas,
     reservas,
@@ -31,5 +52,7 @@ export const useReservas = () => {
     habitaciones,
     useGetReservasPorNombre,
     resultados,
+    useLogin,
+    useLogOut,
   };
 };

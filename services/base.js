@@ -5,6 +5,7 @@ export const getReservas = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
   }).then((res) => res.json());
 };
@@ -14,6 +15,7 @@ export const addReserva = (data) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     body: JSON.stringify(data),
   }).then((res) => res.json());
@@ -24,6 +26,7 @@ export const updateReserva = (data) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     body: JSON.stringify(data),
   }).then((res) => res.json());
@@ -34,6 +37,7 @@ export const deleteReservas = (id) => {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
   }).then((res) => res.json());
 };
@@ -43,6 +47,7 @@ export const getHabitaciones = () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
   }).then((res) => res.json());
 };
@@ -52,7 +57,28 @@ export const getReservasPorNombre = (busqueda) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     body: JSON.stringify(busqueda),
   }).then((res) => res.json());
+};
+
+export const logIn = (log) => {
+  return fetch(prefix + "login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(log),
+  });
+};
+
+export const logOut = () => {
+  return fetch(prefix + "logout", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
 };
