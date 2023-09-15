@@ -99,59 +99,18 @@
         <!-- GMAIL -->
         <div class="text-center lg:text-start">
           <p class="text-xl">Mandanos un correo</p>
-          <button class="lg:pl-7 py-3">
-            <p
-              class="bg-mostaza text-white font-bold p-2 w-max flex flex-row items-center gap-2 rounded-md shadow-inner hover:brightness-90"
-            >
-              <svg
-                class="w-8"
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                viewBox="0,0,256,256"
+          <a href="mailto:alojamientoelpaso43@gmail.com">
+            <button class="lg:pl-7 py-3">
+              <p
+                class="bg-mostaza text-white font-bold p-2 w-max flex flex-row items-center gap-2 rounded-md shadow-inner hover:brightness-90"
               >
-                <g
-                  fill="#ffffff"
-                  fill-rule="nonzero"
-                  stroke="none"
-                  stroke-width="1"
-                  stroke-linecap="butt"
-                  stroke-linejoin="miter"
-                  stroke-miterlimit="10"
-                  stroke-dasharray=""
-                  stroke-dashoffset="0"
-                  font-family="none"
-                  font-weight="none"
-                  font-size="none"
-                  text-anchor="none"
-                  style="mix-blend-mode: normal"
+                <svg
+                  class="w-8"
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0px"
+                  y="0px"
+                  viewBox="0,0,256,256"
                 >
-                  <g transform="scale(5.12,5.12)">
-                    <path
-                      d="M5.5,7c-2.46875,0 -4.48828,2.01563 -4.5,4.48438c0,0 0,0.00391 0,0.00781c0,0.00391 0,0.00391 0,0.00781v27c0,2.47266 2.02734,4.5 4.5,4.5h39c2.47266,0 4.5,-2.02734 4.5,-4.5v-27c0,-0.00391 0,-0.00391 0,-0.00781c0,-0.00391 0,-0.00781 0,-0.00781c-0.01172,-2.46875 -2.03125,-4.48437 -4.5,-4.48437zM8.10156,9h33.80078l-16.90234,11.78125zM4.77344,9.11719l20.22656,14.10156l20.23047,-14.10156c1.02344,0.30859 1.76172,1.23828 1.76953,2.37109c-0.00391,0.21094 -0.21875,0.63281 -0.53125,0.97266c-0.31641,0.34375 -0.625,0.55859 -0.625,0.55859l-0.00391,0.00781l-20.83984,14.75l-20.83984,-14.75l-0.00391,-0.00781c0,0 -0.30859,-0.21484 -0.625,-0.55859c-0.3125,-0.33984 -0.52734,-0.76172 -0.53125,-0.97266c0.00781,-1.13281 0.74609,-2.0625 1.77344,-2.37109zM3,14.65234l0.00781,0.00781l0.00781,0.00391v0.00391l2.98438,2.10938v24.22266h-0.5c-1.39062,0 -2.5,-1.10937 -2.5,-2.5zM47,14.65234v23.84766c0,1.39063 -1.10937,2.5 -2.5,2.5h-0.5v-24.22266l2.98438,-2.10937v-0.00391zM8,18.19141l17,12.03125l17,-12.03125v22.80859h-34z"
-                    ></path>
-                  </g>
-                </g>
-              </svg>
-              elpaso43@gmail.com
-            </p>
-          </button>
-        </div>
-        <!-- INSTAGRAM -->
-        <div class="text-center lg:text-start">
-          <p class="text-xl">Seguínos en Instagram</p>
-          <button class="lg:pl-7 lg:py-3 py-2">
-            <p
-              class="bg-mostaza lg:py-3 flex flex-row items-center gap-2 text-white font-bold rounded-md p-2 w-max hover:brightness-90"
-            >
-              <svg
-                class="w-8"
-                xmlns="http://www.w3.org/2000/svg"
-                x="0px"
-                y="0px"
-                viewBox="0,0,256,256"
-              >
-                <g transform="">
                   <g
                     fill="#ffffff"
                     fill-rule="nonzero"
@@ -163,21 +122,66 @@
                     stroke-dasharray=""
                     stroke-dashoffset="0"
                     font-family="none"
-                    font-weight="bold"
+                    font-weight="none"
                     font-size="none"
                     text-anchor="none"
                     style="mix-blend-mode: normal"
                   >
                     <g transform="scale(5.12,5.12)">
                       <path
-                        d="M16,3c-7.16752,0 -13,5.83248 -13,13v18c0,7.16752 5.83248,13 13,13h18c7.16752,0 13,-5.83248 13,-13v-18c0,-7.16752 -5.83248,-13 -13,-13zM16,5h18c6.08648,0 11,4.91352 11,11v18c0,6.08648 -4.91352,11 -11,11h-18c-6.08648,0 -11,-4.91352 -11,-11v-18c0,-6.08648 4.91352,-11 11,-11zM37,11c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM25,14c-6.06329,0 -11,4.93671 -11,11c0,6.06329 4.93671,11 11,11c6.06329,0 11,-4.93671 11,-11c0,-6.06329 -4.93671,-11 -11,-11zM25,16c4.98241,0 9,4.01759 9,9c0,4.98241 -4.01759,9 -9,9c-4.98241,0 -9,-4.01759 -9,-9c0,-4.98241 4.01759,-9 9,-9z"
+                        d="M5.5,7c-2.46875,0 -4.48828,2.01563 -4.5,4.48438c0,0 0,0.00391 0,0.00781c0,0.00391 0,0.00391 0,0.00781v27c0,2.47266 2.02734,4.5 4.5,4.5h39c2.47266,0 4.5,-2.02734 4.5,-4.5v-27c0,-0.00391 0,-0.00391 0,-0.00781c0,-0.00391 0,-0.00781 0,-0.00781c-0.01172,-2.46875 -2.03125,-4.48437 -4.5,-4.48437zM8.10156,9h33.80078l-16.90234,11.78125zM4.77344,9.11719l20.22656,14.10156l20.23047,-14.10156c1.02344,0.30859 1.76172,1.23828 1.76953,2.37109c-0.00391,0.21094 -0.21875,0.63281 -0.53125,0.97266c-0.31641,0.34375 -0.625,0.55859 -0.625,0.55859l-0.00391,0.00781l-20.83984,14.75l-20.83984,-14.75l-0.00391,-0.00781c0,0 -0.30859,-0.21484 -0.625,-0.55859c-0.3125,-0.33984 -0.52734,-0.76172 -0.53125,-0.97266c0.00781,-1.13281 0.74609,-2.0625 1.77344,-2.37109zM3,14.65234l0.00781,0.00781l0.00781,0.00391v0.00391l2.98438,2.10938v24.22266h-0.5c-1.39062,0 -2.5,-1.10937 -2.5,-2.5zM47,14.65234v23.84766c0,1.39063 -1.10937,2.5 -2.5,2.5h-0.5v-24.22266l2.98438,-2.10937v-0.00391zM8,18.19141l17,12.03125l17,-12.03125v22.80859h-34z"
                       ></path>
                     </g>
                   </g>
-                </g>
-              </svg>
-              @ElPaso43
-            </p>
+                </svg>
+                elpaso43@gmail.com
+              </p>
+            </button>
+          </a>
+        </div>
+        <!-- INSTAGRAM -->
+        <div class="text-center lg:text-start">
+          <p class="text-xl">Seguínos en Instagram</p>
+          <button class="lg:pl-7 lg:py-3 py-2">
+            <a target="_blank" href="https://www.instagram.com/elpaso.43">
+              <p
+                class="bg-mostaza lg:py-3 flex flex-row items-center gap-2 text-white font-bold rounded-md p-2 w-max hover:brightness-90"
+              >
+                <svg
+                  class="w-8"
+                  xmlns="http://www.w3.org/2000/svg"
+                  x="0px"
+                  y="0px"
+                  viewBox="0,0,256,256"
+                >
+                  <g transform="">
+                    <g
+                      fill="#ffffff"
+                      fill-rule="nonzero"
+                      stroke="none"
+                      stroke-width="1"
+                      stroke-linecap="butt"
+                      stroke-linejoin="miter"
+                      stroke-miterlimit="10"
+                      stroke-dasharray=""
+                      stroke-dashoffset="0"
+                      font-family="none"
+                      font-weight="bold"
+                      font-size="none"
+                      text-anchor="none"
+                      style="mix-blend-mode: normal"
+                    >
+                      <g transform="scale(5.12,5.12)">
+                        <path
+                          d="M16,3c-7.16752,0 -13,5.83248 -13,13v18c0,7.16752 5.83248,13 13,13h18c7.16752,0 13,-5.83248 13,-13v-18c0,-7.16752 -5.83248,-13 -13,-13zM16,5h18c6.08648,0 11,4.91352 11,11v18c0,6.08648 -4.91352,11 -11,11h-18c-6.08648,0 -11,-4.91352 -11,-11v-18c0,-6.08648 4.91352,-11 11,-11zM37,11c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM25,14c-6.06329,0 -11,4.93671 -11,11c0,6.06329 4.93671,11 11,11c6.06329,0 11,-4.93671 11,-11c0,-6.06329 -4.93671,-11 -11,-11zM25,16c4.98241,0 9,4.01759 9,9c0,4.98241 -4.01759,9 -9,9c-4.98241,0 -9,-4.01759 -9,-9c0,-4.98241 4.01759,-9 9,-9z"
+                        ></path>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+                @ElPaso43
+              </p>
+            </a>
           </button>
         </div>
       </div>

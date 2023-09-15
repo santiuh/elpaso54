@@ -60,7 +60,7 @@
           APART HOTEL
         </div>
         <p class="text-white font-adobe lg:text-2xl text-xl">
-          Reservá tu estadía y disfrutá de la playa a sólo 43 pasos del mar.
+          Reservá tu estadía y disfrutá del mar a solo 43 pasos de la playa.
         </p>
       </div>
       <!-- BOTON  -->
