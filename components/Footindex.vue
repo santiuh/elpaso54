@@ -4,7 +4,7 @@
       class="flex lg:justify-around py-10 flex-col-reverse lg:flex-row items-center lg:items-start"
     >
       <div class="text-sm text-white text-center lg:text-start">
-        <div>©2023 El Paso 43</div>
+        <div>©2023 El Paso 54</div>
         <div class="lg:px-0 px-2">
           Av. Costanera 4148, B7112 Costa Azul, Provincia de Buenos Aires
         </div>

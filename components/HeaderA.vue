@@ -54,13 +54,13 @@
           BIENVENÍDO A
         </div>
         <div class="text-white font-adobe lg:text-9xl text-6xl font-bold">
-          EL PASO 43
+          EL PASO 54
         </div>
         <div class="text-white font-adobe lg:text-7xl text-3xl font-bold">
           APART HOTEL
         </div>
         <p class="text-white font-adobe lg:text-2xl text-xl">
-          Reservá tu estadía y disfrutá del mar a solo 43 pasos de la playa.
+          Reservá tu estadía y disfrutá del mar a solo 54 pasos de la playa.
         </p>
       </div>
       <!-- BOTON  -->

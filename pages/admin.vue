@@ -196,14 +196,14 @@ const useUpdateReserva = () => {
         <div class="flex flex-row">
           <!-- Cabañas y Nombre hotel -->
           <div class="flex flex-col border">
-            <!-- <div class="p-2 text-center text-xl min-w-max">El Paso 43</div> -->
+            <!-- <div class="p-2 text-center text-xl min-w-max">El Paso 54</div> -->
             <select
               name=""
               id=""
               class="py-3 text-xl min-w-max"
               v-model="hotel_id"
             >
-              <option :value="1">El Paso 43</option>
+              <option :value="1">El Paso 54</option>
               <option :value="2">El Paso 54</option>
             </select>
             <div class="p-2">
@@ -328,7 +328,7 @@ const useUpdateReserva = () => {
                   id=""
                   v-model="hotel_id"
                 >
-                  <option :value="1">El Paso 43</option>
+                  <option :value="1">El Paso 54</option>
                   <option :value="2">El Paso 54</option>
                 </select>
               </div>
@@ -566,7 +566,7 @@ const useUpdateReserva = () => {
               <div class="flex flex-row items-baseline gap-2">
                 <div class="text-xl font-bold">{{ resultado.pasajero }}</div>
                 <div class="text-gray-400">
-                  {{ resultado.hotel_id === 1 ? "El Paso 43" : "El Paso 54" }}
+                  {{ resultado.hotel_id === 1 ? "El Paso 54" : "El Paso 54" }}
                 </div>
               </div>
 

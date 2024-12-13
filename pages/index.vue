@@ -22,7 +22,7 @@
   ></Cardindex>
   <Cardindex
     titulocard="Frente al mar."
-    textocard="El paso 43 se destaca por la cercanía a la playa y las vistas al mar desde casi todas sus habitaciones y la terraza."
+    textocard="El paso 54 se destaca por la cercanía a la playa y las vistas al mar desde casi todas sus habitaciones y la terraza."
     imagen="images/playa.jpeg"
     link="/contacto"
   ></Cardindex>

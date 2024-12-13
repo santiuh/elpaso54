@@ -4,7 +4,7 @@
     <div class="text-center lg:text-start">
       <div class="font-adobe text-3xl lg:text-4xl">Reservá ahora.</div>
       <p class="font-monse text-2xl">
-        Contactanos y reservá ahora tu lugar en El Paso 43.
+        Contactanos y reservá ahora tu lugar en El Paso 54.
       </p>
     </div>
     <div class="flex flex-col lg:flex-row my-10 gap-10">
